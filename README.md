@@ -1,198 +1,156 @@
-# Introductions (2025)
-Eric Pogue and ChatGPT created this repository as a template for an "Introductions" website.
-
-Additional GitHub Page information can be found at [GitHub Pages](https://pages.github.com/). Also, there is a 5-minute 
-[Hello World with GitHub Pages](https://www.lewis.education/?cpsc=sp24-cpsc-20000-002#/activity/hello-world-web-part-1)
-video tutorial that was created for the Lewis University ”Introduction to Computer Science” class that might be helpful. 
-
-# Activity / Assignment
-Follow the instructions below to create your own Introductions webpage using GitHub Pages. As always, be careful 
-about sharing confidential information. 
-
----
-
-# Background
-
-## The initial prompt given to ChatGPT was:
-```
-Create an HTML and CSS-based application that introduces yourself and includes the following items:
-    Your first and last name
-    The name that you would prefer to be called if that is different from your first name
-    Your current or most recent job title
-    A summary of your current or most recent job responsibilities
-    Your hobbies or special interests
-    Your reasons for pursuing this degree
-    Your reasons for taking this course
-    A fun fact about yourself that will help your classmates remember you
-```
-
-This is provided only as background. No action is needed on your part yet. 
-
-## ChatGPT responded with:
-As an AI, I don't have personal information such as a name, job title, or hobbies. However, I can create a template based on your 
-request. You can fill in your details where necessary. Below is a basic HTML and CSS code to create a webpage introducing 
-yourself:
-```
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Me</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            line-height: 1.6;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .main-info {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-        }
-        .main-info h1 {
-            margin: 0;
-        }
-        .hobbies, .career, .course {
-            background: #e7e7e7;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Introductions — Diego Estrada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --card: #111827;        /* gray-900 */
+      --muted: #94a3b8;       /* slate-400 */
+      --text: #e5e7eb;        /* gray-200 */
+      --accent: #22d3ee;      /* cyan-400 */
+      --ring: rgba(34, 211, 238, .35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 10% -10%, rgba(34,211,238,.12), transparent),
+                  radial-gradient(1200px 800px at 110% 10%, rgba(14,165,233,.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 16px 32px;
+    }
+    header.hero {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    .hero h1 { margin: 0 0 6px; font-size: 1.9rem; letter-spacing: .3px; }
+    .hero p { margin: 6px 0; color: var(--muted); }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .badge {
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: .88rem;
+      background: rgba(2,6,23,.35);
+    }
+
+    .grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 22px; }
+    @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(34,211,238,.25); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
+    .card h2 { margin: 0 0 8px; font-size: 1.15rem; color: var(--accent); }
+    .card p { margin: 8px 0; }
+    .list { padding-left: 18px; margin: 6px 0 0; }
+
+    /* Explicit style for the previously unstyled Fun Fact section */
+    .fun-fact {
+      position: relative;
+      border-left: 3px solid var(--accent);
+      outline: 0;
+    }
+    .fun-fact::after {
+      content: "★";
+      position: absolute; right: 14px; top: 14px; font-size: 18px; opacity: .5;
+    }
+
+    footer { color: var(--muted); font-size: .9rem; margin-top: 28px; text-align: center; }
+    a { color: var(--accent); text-decoration: none; }
+    a:focus, .card:focus { outline: 3px solid var(--ring); outline-offset: 2px; border-radius: 14px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="main-info">
-            <h1>Your Name: [Your Full Name]</h1>
-            <p>Preferred Name: [Your Preferred Name]</p>
-            <p>Current/Recent Job Title: [Your Job Title]</p>
-        </header>
+  <main class="container">
+    <header class="hero" tabindex="0">
+      <h1>Diego Estrada</h1>
+      <p><strong>Preferred name:</strong> Diego</p>
+      <p><strong>Current role:</strong> Runner/Busser at Gibson’s Steakhouse (Chicago)</p>
+      <div class="badges">
+        <span class="badge">Lewis University — Intro to CS</span>
+        <span class="badge">Chicago, IL</span>
+        <span class="badge">Hospitality + Tech</span>
+      </div>
+    </header>
 
-        <section class="career">
-            <h2>Job Responsibilities</h2>
-            <p>[Summary of your current or most recent job responsibilities]</p>
-        </section>
+    <section class="grid" aria-label="About Diego">
+      <article class="card" tabindex="0">
+        <h2>Job Responsibilities</h2>
+        <p>
+          Support front-of-house service at a high‑volume steakhouse: table resets, food running, guest requests,
+          coordination with servers and kitchen, and keeping the dining room flowing during rushes. Strong focus on
+          teamwork, communication, and attention to detail.
+        </p>
+      </article>
 
-        <section class="hobbies">
-            <h2>Hobbies and Special Interests</h2>
-            <p>[Your hobbies or special interests]</p>
-        </section>
+      <article class="card" tabindex="0">
+        <h2>Hobbies & Special Interests</h2>
+        <ul class="list">
+          <li>PC hardware tinkering (eGPU builds, dual‑boot setups)</li>
+          <li>Photography & video (Canon Rebel T7)</li>
+          <li>Creative writing & game story rewrites</li>
+          <li>DIY electronics and hands‑on fabrication (welding background)</li>
+        </ul>
+      </article>
 
-        <section class="career">
-            <h2>Reasons for Pursuing This Degree</h2>
-            <p>[Your reasons for pursuing the degree]</p>
-        </section>
+      <article class="card" tabindex="0">
+        <h2>Why I’m Pursuing This Degree</h2>
+        <p>
+          I’m aiming to blend real‑world problem solving with technology—starting with solid CS foundations and growing
+          into areas like cybersecurity and embedded systems. Long term, I want to build practical tech that helps
+          people and maybe even dabble in innovative transportation ideas.
+        </p>
+      </article>
 
-        <section class="course">
-            <h2>Reasons for Taking This Course</h2>
-            <p>[Your reasons for taking this course]</p>
-        </section>
+      <article class="card" tabindex="0">
+        <h2>Why I’m Taking This Course</h2>
+        <p>
+          To get comfortable turning ideas into code, practice version control, and build a portfolio site I can iterate
+          on throughout the program.
+        </p>
+      </article>
 
-        <section class="fun-fact">
-            <h2>Fun Fact</h2>
-            <p>[A fun fact about yourself]</p>
-        </section>
-    </div>
+      <article class="card fun-fact" tabindex="0" style="grid-column: 1 / -1;">
+        <h2>Fun Fact</h2>
+        <p>
+          I once turned a modest ThinkPad into a tiny rendering rig with an external GPU dock I pieced together—after a
+          lot of drivers, BIOS adventures, and coffee.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Diego Estrada • Built for Lewis University’s Introductions activity • <a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a></p>
+    </footer>
+  </main>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-```
-
-You can replace the placeholders (like [Your Full Name]) with your personal information. This code provides a simple 
-web page with sections for each of the items you've listed. The CSS is basic, providing a clean and readable layout. 
-You can further customize the style and layout to fit your preferences.
-
-## Eric’s Comments:
-Wow. I’m impressed with ChatGPT’s response. I have taken the generated code and added it to this template GitHub 
-repository along with adding this README.md file and an MIT LICENSE file. 
-
-Note that the initial prompt was challenging to craft and required several iterations before ChatGPT responded with a
-solid response. 
-
-Did you notice that ChatGPT failed to style the “Fun Fact” section? Can you fix that?
-
-# Second ChatGPT Prompt Requesting Instructions
-The next prompt directed at ChatGPT occurred in three parts and included:
-1. Describe how to use GitHub Pages to deploy an introductions website using a GitHub repository as a template.
-2. Move and renumber step 3 so that it is step 2. 
-3. Update the instructions so that we make the code changes within GitHub instead of cloning the repository.
-
-Note that editing the file on GitHub (instead of cloning them and editing them locally) is “wrong” in software 
-development. However, we are doing it here for simplicity. Also, note that I am a firm believer in CI/CD so it
-was important to me that GitHub Pages hosting (step 3 initially) occurred before updating the code (step 2
-initially).
-
-## After all three prompts, ChatGPT responded with:
-Certainly! Here's the updated guide where the code changes are made directly within GitHub, without cloning the repository:
-
-## Deploying a Project Site on GitHub Pages Using a Template Repository
-
-### Step 1: Find and Use a Template Repository
-
-#### Search for a Template
-- Go to GitHub and find a repository that's set up as a template for an introductions website or a similar project.
-- Look for repositories with a "template" badge.
-
-#### Create a New Repository from the Template
-- Click on the "Use this template" button on the template repository's page.
-- Name your repository.
-- Optionally, add a description.
-- Choose whether your repository should be public or private.
-- Click "Create repository from template".
-
-### Step 2: Enable GitHub Pages
-
-#### Repository Settings
-- Go to your GitHub repository in a web browser.
-- Click on the "Settings" tab, then scroll down to the "GitHub Pages" section.
-
-#### Source Selection
-- Under "Source", select the branch you want to publish (usually `main` or `master`).
-- Click "Save" to activate GitHub Pages.
-
-### Step 3: Customize Your Website Directly on GitHub
-
-#### Edit Files on GitHub
-- Navigate to your repository's main page on GitHub.
-- Locate the `index.html` file or other files you wish to edit.
-- Click on the file to view it, then click the pencil icon (Edit this file) in the top right to start editing.
-
-#### Make and Commit Changes
-- After making your changes in the web editor, scroll down to the "Commit changes" section.
-- Enter a commit message that describes your changes.
-- Choose to commit directly to the main branch.
-- Click "Commit changes".
-
-### Step 4: Accessing Your Website
-
-- Your project site will be available at `https://[username].github.io/[repository-name]/`.
-- Replace `[username]` with your GitHub username and `[repository-name]` with your repository name.
-- It may take a few minutes for the site to go live. If it's not immediately available, wait a bit and then refresh.
-
-### Step 5: Update Your Site
-
-- To update your site, repeat the process in Step 3: edit files and commit changes directly on GitHub.
-- GitHub Pages will automatically update your site with these changes.
-
-### Additional Notes
-
-- GitHub Pages supports only static content.
-- Public repositories mean all source code is publicly visible.
-- For more advanced features like custom domains or Jekyll themes, refer to the GitHub Pages documentation.
-
-In this updated guide, the customization of the website is done through GitHub's web interface, eliminating the need 
-to clone the repository locally. This approach is straightforward and convenient for making quick edits or for users 
-less familiar with Git.
-
-## Eric’s Comments
-It took quite a lot of time to craft the ChatGPT prompts, but I like the resulting instructions. Note that this 
-repository is the GitHub template repository that you should use in the instructions above. 
-
-There should also be a step 6. ChatGPT did not know that I added a README.md file.
-
-### Step 6: Update README.md File
 
 - Remove all of the text in your README.md file.
 - Add your application name and add yourself as the Author.
